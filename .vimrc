@@ -206,6 +206,20 @@ function! StripTrailingWhitespaces()
 endfunction
 
 
+" v - virtual and select mode, no - non recursive
+vnoremap ;/ :call ToggleComment()<cr>
+
+" the way it works - select lines, then call the function
+" it'll add or remove '//' at the beginning of each line
+function! ToggleComment()
+        if matchstr(getline(line(".")),'^\s*\/\/.*$') == ''
+                :execute "s:^://:"
+        else
+                :execute "s:^\s*//::"
+        endif
+endfunction
+
+
 " }}}
 
 
