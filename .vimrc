@@ -23,28 +23,6 @@ else
 endif
 
 
-" set cindent
-" set autoindent
-" set smartindent
-"
-" https://vim.fandom.com/wiki/Search_and_replace_in_multiple_buffers
-"
-"
-" align continuations within open parens with the start of the parens
-" set cinoptions+=(0
-"
-" but when the last char of prev line is the open parens, just indent 1 sw
-" set cinoptions+=Ws
-"
-" line up close brackets on their own line like blocks
-" set cinoptions+=m1
-"
-" enable sane java and javascript indenting
-" set cinoptions+=j1,J1
-"
-
-
-
 " misc {{{
 
 " highlight last inserted text
@@ -143,15 +121,18 @@ set foldenable
 " }}}
 
 
-" spaces & tabs {{{
+" spaces, tabs & indent {{{
+
+" TODO indention doesn't seem to work for python files, need to fix that
+
+set autoindent      " tells vim to apply the indentation of the current line to the next
+set smartindent     " reacts to the syntax/style of the code being edited
 
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 
-
-" number of spaces per indention
-"set shiftwidth=2
+set shiftwidth=4 " number of spaces per indention
 
 " }}}
 
