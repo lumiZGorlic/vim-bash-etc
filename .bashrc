@@ -141,3 +141,15 @@ extract () {
  fi
 }
 
+# added by lumi
+# find files + grep
+ffg() {
+    find . -name "$1" | xargs grep "$2"
+}
+
+# added by lumi
+# find all files + grep
+fafg() {
+    find . -name "*" | xargs grep "$1"
+}
+
