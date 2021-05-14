@@ -21,3 +21,8 @@ alias glo='git log'
 
 alias fn='find . -name '
 
+alias install='sudo apt-get install'
+alias remove='sudo apt-get remove'
+alias purge='sudo apt-get remove --purge'
+alias update='sudo apt-get update'
+
