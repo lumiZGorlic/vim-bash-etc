@@ -153,3 +153,9 @@ fafg() {
     find . -name "*" | xargs grep "$1"
 }
 
+# added by lumi
+# recursive count number of lines per file + sort
+count() {
+    find . -name "$1" | xargs wc -l | sort -nr
+}
+

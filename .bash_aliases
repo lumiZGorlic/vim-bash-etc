@@ -23,6 +23,6 @@ alias fn='find . -name '
 
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
-alias purge='sudo apt-get remove --purge'
+alias purge='sudo apt-get remove --purge' # removes package and configuration
 alias update='sudo apt-get update'
 
