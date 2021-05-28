@@ -9,6 +9,8 @@ alias fpg='find . -type f -name "*py" | xargs grep '
 alias h='history'
 alias hg='history | grep '
 
+alias envg='env | grep '
+
 alias gdf='git diff'
 alias gdt='git difftool'
 alias gst='git status'
