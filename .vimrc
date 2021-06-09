@@ -68,6 +68,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " plugins to look at: tmux, ag, nerdtree
 
+" for installing 'you complete me' see the below link
+" https://dominoc925.blogspot.com/2019/09/installing-vim-youcompleteme-for-ubuntu.html
+
 " }}}
 
 
