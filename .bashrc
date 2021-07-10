@@ -159,3 +159,22 @@ count() {
     find . -name "$1" | xargs wc -l | sort -nr
 }
 
+# added by lumi
+# taken from https://codereview.stackexchange.com/questions/88236/unix-shell-function-for-adding-directories-to-path
+#
+# DESC: Adds a directory to the PATH if it's not already in the PATH
+# ARGS:
+#  1 - The directory to add
+#  2 - Which end of PATH to add to. Use "front" to prepend.
+#
+add2path() {
+  if ! echo $PATH | egrep "(^|:)$1(:|\$)" > /dev/null ; then
+    if [[ $2 = "front" ]]; then
+      PATH="$1:$PATH"
+    else
+      PATH="$PATH:$1"
+    fi
+    export PATH
+  fi
+}
+
