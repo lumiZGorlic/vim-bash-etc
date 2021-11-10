@@ -23,6 +23,42 @@ else
 endif
 
 
+" plugins {{{
+" apparently plugins block needs to come first
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :VundleInstall    - this actually worked for me, rather than PluginInstall
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" }}}
+
+
 " misc {{{
 
 " highlight last inserted text
@@ -48,7 +84,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 set number
 
 " highlight current line
-set cursorline
+"set cursorline
 
 " visual autocomplete for command menu
 set wildmenu
@@ -58,18 +94,6 @@ set lazyredraw
 
 " seems to be set by default or something
 "set showmatch
-
-" }}}
-
-
-" plugins {{{
-
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" plugins to look at: tmux, ag, nerdtree
-
-" for installing 'you complete me' see the below link
-" https://dominoc925.blogspot.com/2019/09/installing-vim-youcompleteme-for-ubuntu.html
 
 " }}}
 
