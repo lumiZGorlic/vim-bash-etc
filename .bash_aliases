@@ -1,4 +1,3 @@
-
 alias ..='cd ..'
 alias ...='cd ../..'
 
@@ -20,6 +19,8 @@ alias gfe='git fetch'
 alias gad='git add'
 alias gada='git add --all'
 alias glo='git log'
+# Git Discard Changes https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git
+alias gdc='git checkout -- .'
 
 alias fn='find . -name '
 
@@ -27,4 +28,7 @@ alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
 alias purge='sudo apt-get remove --purge' # removes package and configuration
 alias update='sudo apt-get update'
+
+# if in future i want sth like - specify dir and cd there
+#alias tsk='f(){ cd ~/Desktop/tasks/CT-$1;  unset -f f; }; f' # https://unix.stackexchange.com/questions/3773/how-to-pass-parameters-to-an-alias
 
