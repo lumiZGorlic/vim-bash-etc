@@ -1,4 +1,3 @@
-
 " https://web.archive.org/web/20180106045128/https://dougblack.io/words/a-good-vimrc.html
 
 " TODO to read - power of g, highlight tabs
@@ -23,6 +22,8 @@ else
     "endif
 endif
 
+
+" TODO hmmm those plugins how do i update them ? is it automatic ?
 
 " plugins {{{
 " apparently plugins block needs to come first
@@ -63,6 +64,9 @@ filetype plugin indent on    " required
 
 " misc {{{
 
+" so that hq files treated as normal c++ headers
+au BufNewFile,BufRead,BufReadPost *.hq set filetype=cpp
+
 " highlight last inserted text
 nnoremap gV `[v`]
 
@@ -77,31 +81,51 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>eb :vsp ~/.bashrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+" YCM need to make it a separate section
+
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
-" TODO
 " nnoremap <leader>gs  :YcmCompleter GoToSymbol<CR>
-nnoremap <leader>gt  :YcmCompleter GetType<CR>
-" TODO
-" nnoremap <leader>fix :YcmCompleter FixIt<CR>
-" below seems to open files in same buffer so need to work that out
-nnoremap <leader>gr  :YcmCompleter GoToReferences<CR>
-" below seems ok, if multiple files changed then have to save them one by one which is laborious, a section to read about this command on git site, also diff nmap vs nnoremap
-nmap <leader>rr :exe 'YcmCompleter RefactorRename '.input('refactor '.expand('<cword>').' to:')<cr>
-" TODO Format
-" TODO Symbol Search seems cool so can maybe add it
-" TODO YcmDiags
 
-"let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/path/to/build/dir' ]
-"let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Desktop/blabla' ] " dunno how to include two paths
+nnoremap <leader>gt  :YcmCompleter GetType<CR>
+
+" nnoremap <leader>fix :YcmCompleter FixIt<CR>
+" TODO below seems to open files in same buffer so need to work that out, also
+" when run the command, then i try to re-run it and does not work
+nnoremap <leader>gr  :YcmCompleter GoToReferences<CR>
+
+" TODO below seems ok, if multiple files changed then have to save them one by one which is laborious, a section
+" to read about this command on git site, maybe just google 'ycm refactor rename save files' also diff nmap vs nnoremap
+nmap <leader>rr :exe 'YcmCompleter RefactorRename '.input('refactor '.expand('<cword>').' to:')<cr>
+
+" TODO Format, Symbol Search seems cool so can maybe add it, YcmDiags
+
+" show documentation in a popoup about function or class or whatever.
+nmap <leader>d <plug>(YCMHover)
+
+let g:ycm_auto_hover = "" " don't want popup showing up by defult when i hover
+
+let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Projects/zs_build' ]
+"let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Desktop/writeDebugger/trap/_out' ] " dunno how to include two paths
 let g:ycm_goto_buffer_command = 'new-tab' " so files open up in a new tab when going to definition etc
 " https://stackoverflow.com/questions/38534285/vim-youcompleteme-plugin-opens-up-a-split-window-with-function-definition 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" TODO for nerdtree ctrl ww to switch tab <-> nerdtree, maybe add binding
+" nerd tree need to make it a separate section
+
+nmap nt :NERDTreeToggle<CR>
+
+" for nerdtree to switch tab, below is fine, and A is Alt
+map <A-Right> <C-W>l
+map <A-Left> <C-W>h
+
 autocmd BufWinEnter * NERDTreeMirror " when opening a new tab, it'll have nerd tree part
+
+" to switch to a scroll mode in Termdebug use a combination 'Ctrl w' followed
+" by 'N', then to go back press 'i' or 'a'
+" https://stackoverflow.com/questions/50535334/how-do-i-scroll-through-a-terminal-using-vim-8-1s-new-terminal-termpack-support
 
 " }}}
 
