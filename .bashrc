@@ -178,3 +178,7 @@ add2path() {
     export PATH
   fi
 }
+
+# the below is for https://github.com/jan-warchol/smart-bash-history
+source $HOME/smart-bash-history/01-main-settings.sh
+

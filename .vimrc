@@ -3,6 +3,10 @@
 " TODO to read - power of g, highlight tabs
 " TODO make it not wrap up lines
 
+" interesting links
+" https://stackoverflow.blog/2020/11/09/modern-ide-vs-vim-emacs/
+" https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim
+
 " apply the command in the last line only for this file
 set modelines=1
 
@@ -42,6 +46,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'preservim/nerdtree'
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,7 +58,9 @@ filetype plugin indent on    " required
 "filetype plugin on
 "
 " Brief help
-" :VundleInstall    - this actually worked for me, rather than PluginInstall
+" :VundleInstall    - this actually worked for me, rather than PluginInstall.
+"  on another occasion worked but only when i stopped specifying a plugin i
+"  wanted to install
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
@@ -87,13 +97,18 @@ nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
-" nnoremap <leader>gs  :YcmCompleter GoToSymbol<CR>
+"nmap <leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+"nmap <leader>yfd <Plug>(YCMFindSymbolInDocument)
+"nnoremap <leader>gs  :YcmCompleter GoToSymbol<CR>
+"nmap <leader>gs :exe 'YcmCompleter GoToSymbol '.input('refactor '.expand('<cword>').' to:')<cr>
 
 nnoremap <leader>gt  :YcmCompleter GetType<CR>
 
 " nnoremap <leader>fix :YcmCompleter FixIt<CR>
 " TODO below seems to open files in same buffer so need to work that out, also
 " when run the command, then i try to re-run it and does not work
+" https://stackoverflow.com/questions/6852763/how-to-make-vim-quickfix-list-launch-files-in-a-new-tab
+set switchbuf+=usetab,newtab
 nnoremap <leader>gr  :YcmCompleter GoToReferences<CR>
 
 " TODO below seems ok, if multiple files changed then have to save them one by one which is laborious, a section
@@ -117,7 +132,11 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 nmap nt :NERDTreeToggle<CR>
 
-" for nerdtree to switch tab, below is fine, and A is Alt
+" TODO for nerdtree ctrl ww to switch tab <-> nerdtree, maybe add binding
+" hmmm below does not seem to work
+" hmmm how do i map 'ctrl ww' ???
+nmap abc <C-ww>
+" below is fine, and A is Alt
 map <A-Right> <C-W>l
 map <A-Left> <C-W>h
 
@@ -126,6 +145,18 @@ autocmd BufWinEnter * NERDTreeMirror " when opening a new tab, it'll have nerd t
 " to switch to a scroll mode in Termdebug use a combination 'Ctrl w' followed
 " by 'N', then to go back press 'i' or 'a'
 " https://stackoverflow.com/questions/50535334/how-do-i-scroll-through-a-terminal-using-vim-8-1s-new-terminal-termpack-support
+
+" https://yufanlu.net/2016/10/30/ultisnips/
+
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " }}}
 
@@ -212,6 +243,9 @@ set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 
 set shiftwidth=4 " number of spaces per indention
+
+" https://superuser.com/questions/271023/can-i-disable-continuation-of-comments-to-the-next-line-in-vim
+set formatoptions-=cro
 
 " }}}
 
@@ -305,4 +339,5 @@ colorscheme murphy
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 highlight PmenuSel ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 
+" if the below is in the list line, the sections are folded
 " vim:foldmethod=marker:foldlevel=0
