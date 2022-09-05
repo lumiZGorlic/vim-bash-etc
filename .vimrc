@@ -158,6 +158,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+
+" Source the termdebug plugin
+packadd termdebug
+
+" Add mapping to load termdebug
+noremap <silent> <leader>td :Termdebug<cr>
+
+" comments sections in the link below useful
+" https://www.dannyadam.com/blog/2019/05/debugging-in-vim/#comment-251004
+let g:termdebug_wide=1
+
 " }}}
 
 

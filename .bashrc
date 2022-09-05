@@ -151,7 +151,10 @@ ffg() {
 # added by lumi
 # find all files + grep
 fafg() {
-    find . -name "*" | xargs grep -s "$1"
+    #find . -name "*" | xargs grep -s "$1"
+    # above commented out as below method should be better
+    # https://stackoverflow.com/questions/56250325/how-to-make-find-name-txt-xargs-grep-text-to-work-with-filename-with
+    find . -name "*" -exec grep -s "$1" {} +
 }
 
 # added by lumi
