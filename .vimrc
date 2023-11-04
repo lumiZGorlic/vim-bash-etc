@@ -92,6 +92,9 @@ nnoremap <leader>eb :vsp ~/.bashrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " YCM need to make it a separate section
+" in https://gitter.im/Valloric/YouCompleteMe go to 'chat via matrix' 
+" and then can search in old messages
+
 
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
