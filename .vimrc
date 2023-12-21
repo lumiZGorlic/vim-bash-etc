@@ -1,7 +1,8 @@
 " https://web.archive.org/web/20180106045128/https://dougblack.io/words/a-good-vimrc.html
 
-" TODO to read - power of g, highlight tabs
+" TODO to read - power of g, highlight tabs, apply macro to range, regex
 " TODO make it not wrap up lines
+" TODO 'leap neovm' (or similar), 'fzf vim'
 
 " interesting links
 " https://stackoverflow.blog/2020/11/09/modern-ide-vs-vim-emacs/
@@ -73,6 +74,8 @@ filetype plugin indent on    " required
 
 
 " misc {{{
+
+set nowrap
 
 " so that hq files treated as normal c++ headers
 au BufNewFile,BufRead,BufReadPost *.hq set filetype=cpp
