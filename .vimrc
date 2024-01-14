@@ -50,6 +50,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+Plugin 'easymotion/vim-easymotion'
 
 
 " All of your Plugins must be added before the following line
@@ -323,10 +324,10 @@ vnoremap ;/ :call ToggleComment()<cr>
 " the way it works - select lines, then call the function
 " it'll add or remove '//' at the beginning of each line
 function! ToggleComment()
-        if matchstr(getline(line(".")),'^\s*\/\/.*$') == ''
-                :execute "s:^://:"
+        if matchstr(getline(line(".")),'^\/\/.*$') == ''
+                :execute "s:^:\/\/:"
         else
-                :execute "s:^\s*//::"
+                :execute "s:^\/\/::"
         endif
 endfunction
 
