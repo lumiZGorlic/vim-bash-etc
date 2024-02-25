@@ -182,6 +182,15 @@ add2path() {
   fi
 }
 
+# TODO finish below
+#https://askubuntu.com/questions/1413851/changing-bash-terminal-color-and-setting-it-back-to-default
+#r (1 byte) g (1 byte) b (1 byte)
+#white - echo -ne '\e]11;#ffffff\e\\'
+#black - echo -ne '\e]11;#000000\e\\'
+#blue  - echo -ne '\e]11;#0000ff\e\\'
+#add a function that sets color based on passed value (also hard code some colours and do random)
+
+
 # the below is for https://github.com/jan-warchol/smart-bash-history
 source $HOME/smart-bash-history/01-main-settings.sh
 
