@@ -1,12 +1,7 @@
 " https://web.archive.org/web/20180106045128/https://dougblack.io/words/a-good-vimrc.html
-
-" TODO to read - power of g, highlight tabs, apply macro to range, regex
-" TODO make it not wrap up lines
-" TODO 'leap neovm' (or similar), 'fzf vim'
-
-" interesting links
 " https://stackoverflow.blog/2020/11/09/modern-ide-vs-vim-emacs/
 " https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim
+" https://www.reddit.com/r/vim/comments/k183tt/is_there_any_proper_guidetutorial_for_ycm/
 
 " apply the command in the last line only for this file
 set modelines=1
@@ -15,7 +10,7 @@ set modelines=1
 if has("gui_running")
     " GUI is running or is about to start.
     " Maximize gvim window (for an alternative on Windows, see simalt below).
-    set lines=50 columns=100
+    set lines=50 columns=150
 else
     " This is console Vim.
     " the below re-sizes the terminal window
@@ -76,6 +71,11 @@ filetype plugin indent on    " required
 
 " misc {{{
 
+" without this 'jump to next word' is slow
+" but with this on one cannot do '<leader>ev' etc. at least it seems so. need
+" to investigate. what about other key combinations that use <leader> ?
+set timeout timeoutlen=100 ttimeoutlen=100
+
 set nowrap
 
 " so that hq files treated as normal c++ headers
@@ -95,10 +95,15 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>eb :vsp ~/.bashrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" YCM need to make it a separate section
+
+"------------------------------------------------------------------------------------------------------------------------------------------------------
+map  s <Plug>(easymotion-sn)
+omap t <Plug>(easymotion-tn)
+
+
+"------------------------------------------------------------------------------------------------------------------------------------------------------
 " in https://gitter.im/Valloric/YouCompleteMe go to 'chat via matrix' 
 " and then can search in old messages
-
 
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
@@ -129,14 +134,14 @@ nmap <leader>d <plug>(YCMHover)
 
 let g:ycm_auto_hover = "" " don't want popup showing up by defult when i hover
 
-let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Projects/zs_build' ]
+"let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Projects/zs_build' ] " zonesense !!!!!
 "let g:ycm_clangd_args = [ '--compile-commands-dir=/home/lukaszmika/Desktop/writeDebugger/trap/_out' ] " dunno how to include two paths
 let g:ycm_goto_buffer_command = 'new-tab' " so files open up in a new tab when going to definition etc
 " https://stackoverflow.com/questions/38534285/vim-youcompleteme-plugin-opens-up-a-split-window-with-function-definition 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" nerd tree need to make it a separate section
 
+"------------------------------------------------------------------------------------------------------------------------------------------------------
 nmap nt :NERDTreeToggle<CR>
 
 " TODO for nerdtree ctrl ww to switch tab <-> nerdtree, maybe add binding
@@ -149,10 +154,14 @@ map <A-Left> <C-W>h
 
 autocmd BufWinEnter * NERDTreeMirror " when opening a new tab, it'll have nerd tree part
 
+
+"------------------------------------------------------------------------------------------------------------------------------------------------------
 " to switch to a scroll mode in Termdebug use a combination 'Ctrl w' followed
 " by 'N', then to go back press 'i' or 'a'
 " https://stackoverflow.com/questions/50535334/how-do-i-scroll-through-a-terminal-using-vim-8-1s-new-terminal-termpack-support
 
+
+"------------------------------------------------------------------------------------------------------------------------------------------------------
 " https://yufanlu.net/2016/10/30/ultisnips/
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
@@ -198,55 +207,6 @@ set lazyredraw
 
 " }}}
 
-
-" autogroups {{{
-
-" language-specific settings for certain filetypes/file extensions
-"augroup configgroup
-"    autocmd!
-"    autocmd VimEnter * highlight clear SignColumn
-"    autocmd BufWritePre *.py,*.txt,*.java
-"                \:call <SID>StripTrailingWhitespaces()
-"    autocmd FileType java setlocal noexpandtab
-"    autocmd FileType java setlocal list
-"    autocmd FileType python setlocal commentstring=#\ %s
-"    autocmd BufEnter Makefile setlocal noexpandtab
-"augroup END
-
-" }}}
-
-
-" folding {{{
-
-" useful read   http://dgp.toronto.edu/~mjmcguff/learn/vim/folding.txt
-
-
-"enable folding
-set foldenable
-
-
-" open most folds by default
-"set foldlevelstart=10
-
-" 10 nested fold max
-"set foldnestmax=10
-
-" close the fold
-"nnoremap <space> zc
-
-" open the fold
-" nnoremap <space> zo
-
-" open the fold
-"nnoremap <space> zf
-
-" toggle the fold so open/close
-"nnoremap <space> za
-
-" fold based on indent level
-"set foldmethod=indent
-
-" }}}
 
 
 " spaces, tabs & indent {{{
@@ -294,16 +254,6 @@ nnoremap ^ <nop>
 
 " custom functions {{{
 
-" toggle between number and relativenumber
-function! ToggleNumber()
-    if(&relativenumber == 1)
-        set norelativenumber
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
-
 
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
@@ -342,14 +292,6 @@ set background=dark
 " colorscheme VisualStudioDark
 colorscheme murphy
 
-"" Color scheme (terminal)
-"set t_Co=256
-"set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-"" in ~/.vim/colors/ and uncomment:
-"colorscheme solarized
 
 " }}}
 

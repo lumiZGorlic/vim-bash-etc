@@ -32,3 +32,6 @@ alias update='sudo apt-get update'
 # if in future i want sth like - specify dir and cd there
 #alias tsk='f(){ cd ~/Desktop/tasks/CT-$1;  unset -f f; }; f' # https://unix.stackexchange.com/questions/3773/how-to-pass-parameters-to-an-alias
 
+#alias docpp='f(){ cd; mkdir ~/misc/misc_cpp/$1; cd ~/misc/misc_cpp/$1; cp ~/misc/misc_cpp/main.cpp ~/misc/misc_cpp/$1/; gvim main.cpp; }; f'
+#alias undocpp='f(){ cd ~/misc; rm -rf misc_cpp/$1/*; rmdir misc_cpp/$1; }; f'
+
